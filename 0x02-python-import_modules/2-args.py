@@ -22,3 +22,4 @@ if __name__ == "__main__":
             if arg != 0:
                 print("{}: {}".format(arg, args))
             arg += 1
+# a program that prints the number of and the list of its arguments.
