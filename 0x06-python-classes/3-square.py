@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+"""Module documentation for Square class."""
+
 class Square:
     """Defines a square"""
     def __init__(self, size=0):
