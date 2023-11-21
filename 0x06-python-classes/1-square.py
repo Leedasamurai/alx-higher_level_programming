@@ -1,8 +1,11 @@
 #!/usr/bin/python3
+"""Module documentation for Square class."""
+
 
 class Square:
-    """Square with size"""
+    """Square class with private instance attribute: size."""
 
     def __init__(self, size):
-        """Initialises the data"""
+        """Initialize a new square instance"""
         self.__size = size
+
