@@ -1,15 +1,24 @@
 #!/usr/bin/python3
-# Lists all cities of the database hbtn_0e_4_usa, ordered by city id.
-
-import sys
+"""
+Script that lists all cities from the database hbtn_0e_4_usa
+"""
 import MySQLdb
+from sys import argv
 
-if __name__ == "__main__":
-    db = MySQLdb.connect(user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
-    c = db.cursor()
-    c.execute("SELECT `c`.`id`, `c`.`name`, `s`.`name` \
-            FROM `cities` as `c` \
-            INNER JOIN `states` as `s` \
-            ON `c`.`state_id` = `s`.`id` \
-            ORDER BY `c`.`id`")
-    [print(city) for city in c.fetchall()]
+# Code shouldn;t be executed when imported
+if __name__ == '__main__':
+    # Connection to the database
+    db = MySQLdb.connect(host="localhost", port=3306, user=argv[1],
+                         passwd=argv[2], db=argv[3])
+
+    cur = db.cursor()
+    cur.execute("SELECT cities.id, cities.name, states.name FROM cities\
+                INNER JOIN states ON cities.state_id = states.id\
+                ORDER BY cities.id ASC")
+
+    rows = cur.fetchall()
+    for i in rows:
+        print(i)
+    # Clean up process
+    cur.close()
+    db.close()
